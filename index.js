@@ -48,7 +48,21 @@ server.post('/api/users', (req, res) => {
 });
 
 server.put('/api/users/:id', (req, res) => { 
-res.status(200).json({ url: '/hobbits', operation: 'PUT'})
+    const {id} = req.params; //which item
+    const user = req.body; // how we are updating it -- good to name it the same as in the db
+
+    users.update(id,user)
+    .then(updatedUser => {
+        if (updatedUser) {   //// if not found, will return null, so you want to check if user is there
+            res.json(updatedUser)
+        } else {
+            res.status(404).json({message: "The user with the specified ID does not exist."  })
+        }
+    })
+    .catch( err => {
+        res.status(500).json({ error: "The user information could not be modified."} )
+       })
+
 });
 
 server.delete('/api/users/:id', (req, res) => { 
