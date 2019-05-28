@@ -30,7 +30,6 @@ server.get('/api/users/:id', (req, res) => {
   
 });
 
-
 server.post('/api/users', (req, res) => { 
 
    const newUser = req.body
