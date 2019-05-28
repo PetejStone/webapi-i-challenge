@@ -14,10 +14,10 @@ module.exports = {
 
 let _users =  [
   {
-  name: "Jane Doe", // String, required
-  bio: "Not Tarzan's Wife, another Jane",  // String
-  created_at: Date(),// Date, defaults to current date
-  updated_at: Date()// Date, defaults to current date
+  "name": "Jane Doe", // String, required
+  "bio": "Not Tarzan's Wife, another Jane",  // String
+  "created_at": Date(),// Date, defaults to current date
+  "updated_at": Date()// Date, defaults to current date
   }
 ]
 function findUsers() {

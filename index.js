@@ -6,6 +6,8 @@ const {users} = db;
 // creates an express application using the express module
 const server = express();
 
+//middleware that returns the body
+server.use(express.json())
 // configures our server to execute a function for every GET request to "/"
 // the second argument passed to the .get() method is the "Route Handler Function"
 // the route handler function will run on every GET request to "/"
@@ -18,7 +20,7 @@ server.get('/', (req, res) => {
 server.get('/api/users', (req, res) => {
     users.find()
     .then(users => {
-        res.send(user)
+        res.send(users)
     })
     .catch(err => {
         res.status(500).json({error: "There was an error while saving the user to the database"} )
