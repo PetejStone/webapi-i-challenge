@@ -32,8 +32,15 @@ server.get('/api/users/:id', (req, res) => {
 
 server.post('/api/users', (req, res) => { 
 
-   const newBody = req.body
-res.status(201).json({ url: '/api/users', operation: 'POST'})
+   const newUser = req.body
+  
+   users.insert(newUser)
+   .then(addedUser => {
+      res.status(201).json(addedUser);
+   })
+   .catch(err => {
+    res.status(500).json({errorMessage:  "Please provide name and bio for the user."} )
+})
 
 
 });
