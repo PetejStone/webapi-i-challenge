@@ -52,7 +52,14 @@ res.status(200).json({ url: '/hobbits', operation: 'PUT'})
 });
 
 server.delete('/api/users/:id', (req, res) => { 
-res.sendStatus(204);
+    const {id} = req.params;
+    users.remove(id)
+    .then(removedUser => {
+        res.json(removedUser)
+    })
+    .catch( err => {
+     res.status(500).json({ message: "The user with the specified ID does not exist."} )
+    })
 });
 
 
